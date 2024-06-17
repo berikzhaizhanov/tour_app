@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Hotel Detail {% endblock %}
+
+{% block content %}
+
+<div class="room-details segments-page" style="padding: 84px 0 30px;">
+  <div class="container">
+    <div class="content-image">
+      <img src="{% static "uploads/" %}{{ hotel.image }}" alt="">
+    </div>
+    <div class="content-desc">
+      <h5>{{ hotel.name }}</h5>
+      <p style="text-align: justify;">{{ tour.description }}</p>
+    </div>
+    <div class="content-details">
+      <div class="wrap-title">
+        <h5>Тур мәліметтері</h5>
+      </div>
+      <ul>
+        <li>Қала: <span>{{ hotel.city }}</span></li>
+        <li>Бір адамға бағасы: <span>{{ hotel.price }} тенге</span></li>
+        <li>Жұлдыздар:<span>{{ hotel.hotelClass }} <i class="fas fa-star"></i></span></li>
+      </ul>
+    </div>
+    <div class="content-features features">
+      <div class="wrap-title">
+        <h5>Ерекше өзгешеліктері</h5>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-wifi"></i>
+            <h6>Тегін Wi-Fi</h6>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-utensils"></i>
+            <h6>Демалыс</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-tv"></i>
+            <h6>Теледидар</h6>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-tree"></i>
+            <h6>Бақша</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-gallery">
+        <div class="wrap-title">
+            <h5>Gallery</h5>
+        </div>
+        <div class="row">
+            <div class="col s8">
+                <div class="content">
+                    <a href="{% static 'images/gallery1.jpg' %}" data-lightbox="gallery-image"><img src="{% static 'images/gallery1.jpg' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="col s4">
+                <div class="content">
+                    <a href="{% static 'images/gallery2.jpg' %}" data-lightbox="gallery-image"><img src="{% static 'images/gallery2.jpg' %}" alt=""></a>
+                </div>
+                <div class="content plus-mt">
+                    <a href="{% static 'images/gallery3.jpg' %}" data-lightbox="gallery-image"><img src="{% static 'images/gallery3.jpg' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <div class="content-review">
+      <div class="content">
+        <a href="{% url 'blog:orderHotel' id=hotel.id %}" class="btn btn-primary " style="width:100%; margin-bottom:5px" >Себетке қосу</a>
+        <a href="{% url 'blog:reservation_hotel_view' id=hotel.id %}" class="btn btn-success " style="width:100%; margin-bottom:5px" >Қонақүйді брондау үшін</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,129 @@
+{% load static %}
+{#{% use %}#}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" href="images/favicon.png">
+  <title>Monaro - Hotel Mobile Template</title>
+
+  <link rel="stylesheet" href="{% static 'css/materialize.css' %}">
+  <link rel="stylesheet" href="{% static 'css/loader.css' %}">
+  <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
+  <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+  <!-- preloader -->
+  <!-- <div class="preloader">
+    <div class="spinner"></div>
+  </div> -->
+  <!-- end preloader -->
+  
+  <!-- navbar -->
+  <div class="navbar">
+    <div class="container">
+      <div class="row">
+        <div class="col s3">
+          <div class="content-left">
+            <a href="index.html#slide-out" data-activates="slide-out" class="sidebar"><i class="fas fa-bars"></i></a>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="content-center">
+            <a href=""><h1>MONARO</h1></a>
+          </div>
+        </div>
+        <div class="col s3">
+          {% if user.is_authenticated %}
+          <div class="content-right">
+            <form action="{% url 'blog:logout' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn-secondary">{{request.user}}-Шығу</button>
+            </form>
+          </div>
+          {% else %}
+          <div class="content-right">
+            <a href="{% url 'blog:login' %}" class="btn-secondary">
+              Кіру <i class='bx bx-log-in-circle'></i>
+            </a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end navbar -->
+  {% if messages %}
+
+    {% for message in messages %}
+        <div class="alert alert-warning d-flex justify-content-center" role="alert" style="margin-top: 50px;padding: 25px;">
+            {{ message }} 
+        </div>
+    {% endfor %}
+
+  {% endif %}
+
+  <!-- sidebar -->
+  <div class="sidebar-panel">
+    <ul id="slide-out" class="collapsible side-nav">
+      <li class="list-top">
+        <a href="{% url 'blog:index' %}">Басты бет</a>
+      </li>
+      <li><a href="{% url 'blog:tours' %}">Турлар</a></li>
+      <li><a href="{% url 'blog:services' %}">Қонақ үй</a></li>
+
+
+      <li>
+        <div class="collapsible-header">
+          Себет<span><i class="fa fa-angle-right right"></i></span>
+        </div>
+          <div class="collapsible-body">
+            <ul>
+              <li><a href="{% url 'blog:order' %}">Турлар</a></li>
+              <li><a href="{% url 'blog:myHotelOrders' %}">Қонақ үй</a></li>
+            </ul>
+          </div>
+      </li>
+    </ul>
+  </div>
+  <!-- end sidebar -->
+
+  {% block content %}
+
+  {% endblock %}
+
+  <footer>
+    <div class="container">
+      <div class="wrap-title">
+        <h3>MONARO</h3>
+        <P>Сіз ең әдемі жерлерді армандай аласыз, жасай аласыз, жобалай аласыз және сала аласыз</P>
+      </div>
+      <div class="wrap-info">
+        <ul>
+          <li>Астана қаласы</li>
+          <li>+7 707 720 52 63</li>
+          <li>monaro@gmail.com</li>
+        </ul>
+      </div>
+      <div class="footer-text">
+        <p>Авторлық құқық © Барлық құқықтар қорғалған</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/materialize.min.js' %}"></script>
+  <script src="{% static 'js/lightbox.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
+
+<script src="{% static 'assets/js/script.js' %}"></script>
+</body>
+</html>

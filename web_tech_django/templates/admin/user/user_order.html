@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="blog-single segments-page">
+    <div class="container"><br>
+        <div class="related-blog">
+            <div class="wrap-title" style="margin-top: 15px;">
+                <h5>Экскурсиялар бойынша себет</h5>
+            </div>
+            {% if orders %}
+                {% for order in orders %}
+                <div class="row">
+                    <div class="col s4">
+                        <div class="content-image">
+                            <img src="{% static "uploads/" %}{{ order.tour.image }}" alt="">
+                        </div>
+                    </div>
+                    <div class="col s8">
+                        <div class="content-text">
+                            <a href="blog-single.html"><h5>{{ order.tour.name }}</h5></a>
+                            <p class="date">{{ order.tour.price }} тг</p>
+                            <div>
+                                <a href="{% url 'blog:order_delete' id=order.id %}" class="button">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+
+                    <div class="alert alert-warning d-flex justify-content-center">Экскурсиялар жоқ!</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

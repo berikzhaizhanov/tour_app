@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Main Page{% endblock %}
+
+{% block content %}
+<!-- slide -->
+<div class="slide">
+  <div class="slide-show owl-carousel owl-theme">
+    <div class="slide-content">
+      <div class="mask"></div>
+      <img src="{% static 'images/slider1.jpg' %}" alt="">
+      <div class="slide-caption">
+        <h2>Саяхатыңызды қызықты және әсерлі етіңіз</h2>
+        <p>Саяхат біздің ой-өрісімізді кеңейтеді, өмірімізді және оған деген көзқарасымызды, басымдықтарымыз бен құндылықтарымызды өзгертеді..</p>
+      </div>
+    </div>
+    <div class="slide-content">
+      <div class="mask"></div>
+      <img src="{% static 'images/slider2.jpg' %}" alt="">
+      <div class="slide-caption">
+        <h2>Саяхаттау – даму деген сөз</h2>
+        <p>Саяхат - жай ғана орын ауыстыру емес, бұл біздің ішімізде болатын терең өзгеріс..</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end slide -->
+<!-- booking -->
+<div class="booking segments">
+  <div class="container">
+    <div class="wrapper-content">
+      <form action="{% url 'blog:search_tours' %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col s12">
+            <select name="tourName" id="search__places" class="form-control" style="display: block; margin-bottom: 20px;">
+              <option selected value="none">Турлар тізімі</option>
+              {% for tour in tours %}
+                  <option  value="{{ tour.name }}">{{ tour.name }}</option>
+              {% endfor %}
+            </select> 
+          </div>
+          <div class="col s12">
+            <input type="number" name="tourTravellers" id="search__travelers"  class="date-select form-control" placeholder="Саяхатшылар саны" required="required" />
+          </div>
+          <div class="col s12">
+            <input class="form-control" type="date" id="search__date" name="tourDate" value="{{ todaysDate|date:"Y-m-d" }}">
+          </div>
+        </div>
+        <button class="button" type="submit">Қол жетімділікті тексеріңіз</button>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- end booking -->
+<div class="about segments-page">
+  <div class="container">
+    <div class="wrap-content">
+      <div class="signature" style="margin-bottom:15px">
+        <h5>Біз жайлы</h5>
+      </div>
+      <div class="content-image">
+        <img src="{% static 'images/456.jpg' %}" alt="">
+      </div>
+      <div class="content-text">
+        <p>Ең жақсы туроператорлар мен туристік агенттіктер. Біз Қазақстан бойынша  тур мен демалысты ұсынамыз. Бізде 1532 тұтынушы шолуы және 5 жұлдыздың орташа рейтингі бар.
+        </p>
+        <p>Саяхаттау бізге өмірдің мәнін түсінуге және жақсы адам болуға көмектесті. Біз саяхаттаған сайын әлемді жаңа көзбен көреміз.</p>
+      </div>
+      <div class="wrap-info">
+        <ul>
+          <li style="font-weight: 600;font-size: 14px;">- Қауіпсіз саяхат жүйесі</li>
+          <li style="font-weight: 600;font-size: 14px;">- Бюджеттік тур</li>
+          <li style="font-weight: 600;font-size: 14px;">- Жылдам байланыс</li>
+          <li style="font-weight: 600;font-size: 14px;">- 24/7 тұтынушыларға қолдау көрсету</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="banner segments">
+  <div class="container">
+    <div class="content">
+      <span>Ерекше күн</span>
+      <h2>Екі кісілік бөлмелер</h2>
+      <p>50% жеңілдік</p>
+      <button class="button">ҚАЗІР Брондау</button>
+    </div>
+  </div>
+</div>
+
+<div class="latest-news segments">
+  <div class="container">
+    <div class="section-title">
+      <h3>Соңғы жаңалықтар</h3>
+    </div>
+    <div class="row">
+      <div class="col s6">
+        <div class="content">
+          <img src="{% static 'images/latest-news1.jpg' %}" alt="">
+          <span>Курорт</span>
+          <a href="blog-single.html"><h5>Люкс резиденция</h5></a>
+          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+        </div>
+      </div>
+      <div class="col s6">
+        <div class="content">
+          <img src="{% static 'images/latest-news2.jpg' %}" alt="">
+          <span>Қонақ үй</span>
+          <a href="blog-single.html"><h5>Минималист қонақ үйі</h5></a>
+          <p>Lorem ipsum dolor sit amet, consectetur.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+{% endblock %}

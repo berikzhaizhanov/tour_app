@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="room-details segments-page" style="padding: 84px 0 30px;">
+  <div class="container">
+    <div class="content-image">
+      <img src="{% static "uploads/" %}{{ tour.image }}" alt="">
+    </div>
+    <div class="content-desc">
+      <h5>{{ tour.name }}</h5>
+      <p style="text-align: justify;">{{ tour.description }}</p>
+    </div>
+    <div class="content-details">
+      <div class="wrap-title">
+        <h5>Тур мәліметтері</h5>
+      </div>
+      <ul>
+        <li>Ұзақтығы: <span>{{ tour.duration }}</span></li>
+        <li>Басталу күні: <span>{{ tour.started }}</span></li>
+        <li>Тур құны:<span>{{ tour.price }} тг</span></li>
+      </ul>
+    </div>
+    <div class="content-features features">
+      <div class="wrap-title">
+        <h5>Ерекше өзгешеліктері</h5>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-wifi"></i>
+            <h6>Тегін Wi-Fi</h6>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-utensils"></i>
+            <h6>Демалыс</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-tv"></i>
+            <h6>Теледидар</h6>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="content">
+            <i class="fas fa-tree"></i>
+            <h6>Бақша</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-review">
+      <div class="content">
+        <a href="{% url 'blog:add_to_cart' id=tour.id %}" class="btn btn-primary " style="width:100%; margin-bottom:5px" >Себетке қосу</a>
+        <a href="{% url 'blog:reservation_view' id=tour.id %}" class="btn btn-success " style="width:100%; margin-bottom:5px" >Экскурсияға тапсырыс беріңіз</a>
+      </div>
+      <div class="content no-mb">
+        <h6>Пікірлер</h6>
+        {% for comment in comments %}
+        <div class="comment-people">
+          <div class="image">
+            <img src="{% static 'assets/img/avatar.jpg' %}" alt="">
+          </div>
+          <div class="text">
+            <p>{{comment.description}}</p>
+            <p class="date">{{comment.name}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="content-booking booking">
+      <div class="wrap-title">
+        <h5>Пікір қалдыру</h5>
+      </div>
+      <form id="commentForm" class="comment-form" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col s12">
+            <label for="">Аты</label>
+            {{ comments_form.name }}
+          </div>
+          <div class="col s12">
+            <label for="">E-mail</label>
+            {{ comments_form.email }}
+          </div>
+          <div class="col s12">
+            <label for="">Cипаттамасы</label>
+            {{ comments_form.description }}
+          </div>
+        </div>
+        <button class="button">Пікір қалдыру</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

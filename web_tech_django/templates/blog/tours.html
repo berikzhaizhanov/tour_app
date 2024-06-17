@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Tours {% endblock %}
+
+{% block content %}
+
+<div class="rooms-list segments-page" style="padding: 84px 0 30px;">
+	<div class="container">
+		{% if searched_tours %}
+			{% for tour in searched_tours %}
+				<div class="content">
+					<img src="{% static "uploads/" %}{{ tour.image }}" alt="">
+					<div class="price">
+						<h6>{{ tour.country }}</h6>
+					</div>
+					<div class="text">
+						<a href="{% url 'blog:detail_view' tour.id %}"><h4>{{ tour.name }}</h4></a>
+						<p>{{ tour.description }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		{% else %}
+			{% for tour in tours %}
+				<div class="content">
+					<img src="{% static "uploads/" %}{{ tour.image }}" alt="">
+					<div class="price">
+						<h6>{{ tour.country }}</h6>
+					</div>
+					<div class="text">
+						<a href="{% url 'blog:detail_view' tour.id %}"><h4>{{ tour.name }}</h4></a>
+						<p>{{ tour.description }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+
+	</div>
+</div>
+
+{% endblock %}

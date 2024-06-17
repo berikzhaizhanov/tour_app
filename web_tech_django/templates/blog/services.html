@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Services {% endblock %}
+
+{% block content %}
+<div class="rooms-list segments-page" style="padding: 84px 0 30px;">
+    <div class="container">
+         {% for hotel in hotels %}
+            <div class="content">
+                <img src="{% static "uploads/" %}{{ hotel.image }}" alt="">
+                <div class="price">
+                    <h6>{{ hotel.city }}</h6>
+                </div>
+                <div class="text">
+                    <a href="{% url 'blog:hotel_detail' id=hotel.id %}"><h4>{{ hotel.name }}</h4></a>
+                    <p>{{ tour.description }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+ 
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .helptext{
+        display: none;
+    }
+</style>
+<div class="sign-in segments-page">
+    <div class="container">
+        <div class="signin-contents">
+            <form id="#authForm" action="#" class="item__form" method="post">
+                {% csrf_token %}
+                {% if request.GET.next %}
+                    
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+                <div class="content">
+                    <h3>Қош келдіңіз</h3>
+                    <p>Тіркелмеген болсаңыз, жүйеге тіркеліңіз</p>
+                </div>
+
+               
+                {{ form }}
+                <div class="login-signup d-flex" style="align-items: center;justify-content: space-between;margin-bottom: 10px;">
+                    <a>Есептік жазбаңыз бар ма?!</a>
+                    <a href="{% url 'blog:login' %}" class="">Кіру</a>
+                </div>
+                <button type="submit" class="button">
+                    Тіркелу
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- booking -->
+<div class="booking segments-page">
+	<div class="container">
+		<div class="content-title" style="margin-top: 40px;margin-bottom: 17px;">
+			<h4>Қонақ үйді брондау</h4>
+		</div>
+		<div class="wrapper-content">
+			<form method="post">{% csrf_token %}
+				{{ reservation_form.name }}
+				{{ reservation_form.email }}
+				{{ reservation_form.phone }}
+				<div class="wrap-title">
+					<h5>Несие картасы</h5>
+				</div>
+				{{ reservation_form.number_card }}
+				{{ reservation_form.Name_of_the_card_holder }}
+				{{ reservation_form.cvc }}
+				<button class="button" type="submit">Брондауды растау</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

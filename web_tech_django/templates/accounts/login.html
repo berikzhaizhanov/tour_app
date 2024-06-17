@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="sign-in segments-page">
+    <div class="container">
+        <div class="signin-contents">
+            <form id="#authForm" action="#" class="item__form" method="post">
+                {% csrf_token %}
+                {% if request.GET.next %}
+                    
+                    <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+                <div class="content">
+                    <h3>Қош келдіңіз</h3>
+                    <p style="margin-bottom:10px">Тіркелген болсаңыз, жүйеге кіріңіз</p>
+                </div>
+                
+               
+                <div class="form-group">
+                    <div class="input-icon"><i class='bx bx-user'></i></div>
+                   {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <div class="input-icon"><i class='bx bx-at'></i></div>
+                    {{ form.password }}
+                </div>
+                <div class="login-signup d-flex" style="align-items: center;justify-content: space-between;margin-bottom: 10px;">
+                    <a>Аккаунтыңыз жоқ па?</a>
+                    <a href="{% url 'blog:signup' %}" style="color: blue;" class="">Тіркеліңіз</a>
+                </div>
+                <button type="submit" class="button">
+                    Кіру
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
